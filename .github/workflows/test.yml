@@ -17,6 +17,5 @@ jobs:
         username: ${{vars.SSH_USER}}
         key: ${{vars.SSH_KEY}}
         script: |
-          ssh -p 2225 -v ${{variables.SSH_USER}}@${{variables.SSH_HOST}}
           echo hello
       
