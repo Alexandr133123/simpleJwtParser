@@ -1,0 +1,22 @@
+name: TestSSh
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  sshConnect:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Connect
+      uses: appleboy/ssh-action@v1.1.0
+      with:
+        host: ${{variables.SSH_HOST}}
+        port: 2225
+        username: ${{variables.SSH_USER}}
+        key: ${{variables.SSH_KEY}}
+        script: |
+          ssh -p 2225 -v ${{variables.SSH_USER}}@${{variables.SSH_HOST}}
+          echo hello
+      
