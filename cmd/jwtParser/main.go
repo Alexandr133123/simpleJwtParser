@@ -64,10 +64,15 @@ func ValidateTokenHandler(response http.ResponseWriter, request *http.Request) {
 	response.Write([]byte("Token is valid\n"))
 }
 
+func helloHandler(response http.ResponseWriter, request *http.Request) {
+	response.Write([]byte("Hello, world"))
+}
+
 func main() {
 	m := http.NewServeMux()
 	m.HandleFunc("POST /token", CreateTokenHandler)
 	m.HandleFunc("GET /token", ValidateTokenHandler)
+	m.HandleFunc("GET /hello", helloHandler)
 
 	server := &http.Server{
 		Addr:    ":8080",
