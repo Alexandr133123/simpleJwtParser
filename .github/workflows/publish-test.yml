@@ -77,11 +77,12 @@ jobs:
           echo "${{ vars.SSH_KEY }}" | tr -d '\r' | sed 's/\\n/\n/g' > ~/.ssh/test_rsa
           chmod 600 ~/.ssh/test_rsa
           ssh-keyscan -p 2229 ${{vars.SSH_HOST}} >> ~/.ssh/known_hosts
-          ssh -i ~/.ssh/test_rsa -p 2229 -v ${{vars.SSH_USER}}@${{vars.SSH_HOST}}
-          whoami
-          sudo docker login -u alexm155 -p Rata9913rata
-          sudo docker pull alexm155/pank-repo:master
-          sudo docker ps -a
-          sudo docker stop testC
-          sudo docker rm testC
-          sudo docker run -d -p 8081:8080 --name testC alexm155/pank-repo:master
+          ssh -i ~/.ssh/test_rsa -p 2229 -v ${{vars.SSH_USER}}@${{vars.SSH_HOST}} << 'EOF'
+            whoami
+            sudo docker login -u alexm155 -p Rata9913rata
+            sudo docker pull alexm155/pank-repo:master
+            sudo docker ps -a
+            sudo docker stop testC
+            sudo docker rm testC
+            sudo docker run -d -p 8081:8080 --name testC alexm155/pank-repo:master
+          EOF
