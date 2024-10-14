@@ -80,6 +80,7 @@ jobs:
           ssh -i ~/.ssh/test_rsa -p 2229 -v ${{vars.SSH_USER}}@${{vars.SSH_HOST}}
           sudo docker login -u alexm155 -p Rata9913rata
           sudo docker pull alexm155/pank-repo:master
+          sudo docker ps -a
           sudo docker stop testC
           sudo docker rm testC
           sudo docker run -d -p 8081:8080 --name testC alexm155/pank-repo:master
