@@ -15,6 +15,5 @@ jobs:
           mkdir ~/.ssh/
           touch ~/.ssh/id_rsa
           echo '${{vars.SSH_KEY}}' >> ~/.ssh/id_rsa
-          ssh
           ssh -p 2229 -v ${{vars.SSH_USER}}@${{vars.SSH_HOST}}
           echo connected successfully
