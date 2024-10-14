@@ -1,0 +1,21 @@
+name: TestSSh2
+
+on:
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  sshConnect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connect
+        run: |
+          echo '${{vars.SSH_KEY}}'
+          mkdir -p ~/.ssh
+          touch ~/.ssh/test_rsa
+          echo "${{ vars.SSH_KEY }}" | tr -d '\r' | sed 's/\\n/\n/g' > ~/.ssh/test_rsa
+          chmod 600 ~/.ssh/test_rsa
+          ssh-keyscan -p 2229 ${{vars.SSH_HOST}} >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/test_rsa -p 2229 -v ${{vars.SSH_USER}}@${{vars.SSH_HOST}}
+          echo connected successfully

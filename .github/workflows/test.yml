@@ -13,10 +13,9 @@ jobs:
       uses: appleboy/ssh-action@v1.1.0
       with:
         host: ${{vars.SSH_HOST}}
-        port: 2225
+        port: 2229
         username: ${{vars.SSH_USER}}
-        key: ${{vars.SSH_KEY}}
+        password: 123123
         script: |
-          ssh -p 2225 -v ${{variables.SSH_USER}}@${{variables.SSH_HOST}}
           echo hello
       
