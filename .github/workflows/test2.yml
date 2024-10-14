@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Connect
         run: |
-          echo ${{vars.SSH_KEY}}
-          echo ${{vars.SSH_KEY}} >> ~/.ssh/id_rsa
+          echo '${{vars.SSH_KEY}}'
+          echo '${{vars.SSH_KEY}}' >> ~/.ssh/id_rsa
           ssh -p 2229 -v ${{vars.SSH_USER}}@${{vars.SSH_HOST}}
           echo connected successfully
