@@ -12,8 +12,7 @@ jobs:
       - name: Connect
         run: |
           echo '${{vars.SSH_KEY}}'
-          mkdir ~/.ssh/
-          touch ~/.ssh/id_rsa
-          echo '${{vars.SSH_KEY}}' >> ~/.ssh/id_rsa
+          touch /home/runner/.ssh/test_rsa
+          echo '${{vars.SSH_KEY}}' >> /home/runner/.ssh/test_rsa
           ssh -p 2229 -v ${{vars.SSH_USER}}@${{vars.SSH_HOST}}
           echo connected successfully
